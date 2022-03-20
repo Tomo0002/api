@@ -1,0 +1,38 @@
+
+use std::env;
+use std::sync::Arc;
+use mysql::{Opts, OptsBuilder};
+use r2d2_mysql::MysqlConnectionManager;
+
+const DATASET_HOST: &str = "DATASET_HOST";
+const DATASET_PORT: &str = "DATASET_PORT";
+const DATASET_PASS: &str = "DATASET_PATH";
+const DATASET_NAME: &str = "DATASET_NAME";
+const DATASET_USER: &str = "DATASET_USER";
+
+
+const DATABASE_POOL_SIZE: u32 = 4;  
+  
+// DATABASE
+let db_host = env_var(DATASET_HOST, Some("127.0.0.1".to_string()));
+let db_port = env_var(DATASET_PORT, Some("3306".to_string()));
+let db_pass = env_var(DATASET_PASS, None);
+let db_name = env_var(DATASET_NAME, None);
+let db_user = env_var(DATASET_USER, None);
+
+
+assert_ne!(db_host,"");
+assert_ne!(db_port,"");
+assert_ne!(db_pass,"");
+assert_ne!(db_name,"");
+assert_ne!(db_user,"");
+
+
+let db_url = format!(
+    "mysql://{user}:{pass}@{host}/{name}",
+        user = db_user,
+        pass = db_pass,
+        host = db_host
+        name = db_name,
+        port = db_port,
+);

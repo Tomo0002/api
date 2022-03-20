@@ -1,0 +1,17 @@
+[package]
+name = "api"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio = { version = "1.17.0", features = ["full"]}
+warp = "0.3"
+diesel = { version = "1.4.5", features = ["postgres", "sqlite","chrono"] }
+diesel_migrations = "1.4.0"
+libsqlite3-sys = { version = "0.9.1", features = ["bundled"]}
+dotenv = "0.15.0"
+r2d2 = "0.8.6"
+r2d2_mysql = "16"
+mysql = "16"
